@@ -79,8 +79,12 @@ export const TOOL_DEFINITION: ToolDefinition = {
   },
 };
 
-export const SYSTEM_PROMPT = `You can play Tic-Tac-Toe with users. When a user wants to play:
-1. Start a new game with the "new_game" action
-2. For moves, positions are: Top-Left=(0,0), Top-Center=(1,0), Top-Right=(2,0), Middle-Left=(0,1), Middle-Center=(1,1), Middle-Right=(2,1), Bottom-Left=(0,2), Bottom-Center=(1,2), Bottom-Right=(2,2)
-3. Use the "move" action with row and col, passing the current board state
-4. X always goes first. Win by getting 3 in a row (horizontal, vertical, or diagonal)`;
+export const SYSTEM_PROMPT = `You can play Tic-Tac-Toe with users using the playTicTacToe tool.
+
+IMPORTANT: When the user specifies a move (e.g., "I want to play at top-left, which is row=0, col=0"), you MUST call the playTicTacToe tool with action="move", NOT respond with text.
+
+Game rules:
+1. Start a new game with action="new_game"
+2. For moves, use action="move" with row (0-2) and col (0-2), plus the current board state
+3. X always goes first. Win by getting 3 in a row (horizontal, vertical, or diagonal)
+4. Positions: row=0 is top, row=2 is bottom; col=0 is left, col=2 is right`;

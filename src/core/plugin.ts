@@ -94,10 +94,10 @@ export const executeTicTacToe = async (
 
     const isComputerTurn = state.playerNames[state.currentSide] === "computer";
     const instructions = state.isTerminal
-      ? "The game is over. Announce the game result."
+      ? "The game is over. Briefly announce the result. Do NOT draw the board - the user can see it in the GUI."
       : isComputerTurn
-        ? "It is your turn. Choose your next move from the available positions."
-        : "It is the user's turn. Wait for them to make a move.";
+        ? "It is your turn. You MUST call playTicTacToe with action='move' immediately. Do NOT describe the board or explain - just make your move."
+        : "It is the user's turn. Do NOT draw or describe the board - the user can see it in the GUI. Just say it's their turn briefly. When they specify a move, call playTicTacToe with action='move'.";
 
     return {
       message,

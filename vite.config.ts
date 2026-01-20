@@ -12,7 +12,7 @@ export default defineConfig({
         core: resolve(__dirname, "src/core/index.ts"),
         vue: resolve(__dirname, "src/vue/index.ts"),
       },
-      name: "GUIChatPluginOthello",
+      name: "GUIChatPluginTicTacToe",
       formats: ["es", "cjs"],
       fileName: (format, entryName) =>
         `${entryName}.${format === "es" ? "js" : "cjs"}`,

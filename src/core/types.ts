@@ -50,10 +50,11 @@ export interface TicTacToeState {
 }
 
 /**
- * Data passed from handleCellClick for testing/debugging
+ * Data passed from handleCellClick for demo testing
  */
 export interface TicTacToeClickData {
   row: number;
   col: number;
   currentState: TicTacToeState;
 }
+

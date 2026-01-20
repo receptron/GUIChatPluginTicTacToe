@@ -95,7 +95,7 @@ import type { TicTacToeState, TicTacToeClickData } from "../core/types";
 
 const props = defineProps<{
   selectedResult: ToolResult<never, TicTacToeState> | null;
-  sendTextMessage: (text?: string, options?: SendTextMessageOptions) => void;
+  sendTextMessage?: (text: string, options?: SendTextMessageOptions) => void;
 }>();
 
 const gameState = ref<TicTacToeState | null>(null);
@@ -209,8 +209,8 @@ function handleCellClick(index: number): void {
     currentState: gameState.value,
   };
 
-  props.sendTextMessage(
-    `I want to play at ${positionName} (row=${cell.row}, col=${cell.col})`,
+  props.sendTextMessage?.(
+    `I want to play at ${positionName}, which is row=${cell.row}, col=${cell.col}`,
     { data: clickData },
   );
 }
