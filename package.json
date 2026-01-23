@@ -1,6 +1,6 @@
 {
   "name": "@gui-chat-plugin/tictactoe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tic-Tac-Toe game plugin for GUI Chat",
   "type": "module",
   "main": "./dist/index.cjs",
