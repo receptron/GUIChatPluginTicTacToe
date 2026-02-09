@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/%40gui-chat-plugin%2Ftictactoe.svg)](https://badge.fury.io/js/%40gui-chat-plugin%2Ftictactoe)
 # GUIChatPluginTicTacToe
 
 Tic-Tac-Toe game plugin for GUI Chat.
