@@ -99,3 +99,8 @@ yarn run dev
 | `./check-plugin-structure.sh` | ファイル構成チェック |
 | `./check-mulmochat-integration.sh` | MulmoChat統合チェック |
 | `./refresh-in-mulmochat.sh` | MulmoChatに反映 |
+
+## Related
+
+- Protocol spec: [gui-chat-protocol](https://github.com/receptron/gui-chat-protocol)
+- Reference implementations using this protocol: [mulmoclaude](https://github.com/receptron/mulmoclaude) · [MulmoChat](https://github.com/receptron/MulmoChat)
