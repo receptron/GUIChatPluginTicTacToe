@@ -9,8 +9,7 @@ export const TOOL_NAME = "playTicTacToe";
 export const TOOL_DEFINITION: ToolDefinition = {
   type: "function",
   name: TOOL_NAME,
-  description:
-    "Play Tic-Tac-Toe (Noughts and Crosses) game with the user. You can start a new game or make moves on the 3x3 board.",
+  description: "Play Tic-Tac-Toe (Noughts and Crosses) game with the user. You can start a new game or make moves on the 3x3 board.",
   parameters: {
     type: "object",
     properties: {
@@ -21,22 +20,19 @@ export const TOOL_DEFINITION: ToolDefinition = {
       },
       col: {
         type: "number",
-        description:
-          "Column position for the move (0-2, required for 'move' action). Left=0, Center=1, Right=2",
+        description: "Column position for the move (0-2, required for 'move' action). Left=0, Center=1, Right=2",
         minimum: 0,
         maximum: 2,
       },
       row: {
         type: "number",
-        description:
-          "Row position for the move (0-2, required for 'move' action). Top=0, Middle=1, Bottom=2",
+        description: "Row position for the move (0-2, required for 'move' action). Top=0, Middle=1, Bottom=2",
         minimum: 0,
         maximum: 2,
       },
       board: {
         type: "array",
-        description:
-          "Current 3x3 board state BEFORE the move (required for 'move' action). Pass the current board state as-is.",
+        description: "Current 3x3 board state BEFORE the move (required for 'move' action). Pass the current board state as-is.",
         items: {
           type: "array",
           items: {
@@ -48,13 +44,11 @@ export const TOOL_DEFINITION: ToolDefinition = {
       currentSide: {
         type: "string",
         enum: ["X", "O"],
-        description:
-          "Current player's side (required for 'move' action). X always goes first.",
+        description: "Current player's side (required for 'move' action). X always goes first.",
       },
       playerNames: {
         type: "object",
-        description:
-          "Player assignments (required for 'move' action)",
+        description: "Player assignments (required for 'move' action)",
         properties: {
           X: {
             type: "string",
@@ -70,8 +64,7 @@ export const TOOL_DEFINITION: ToolDefinition = {
       firstPlayer: {
         type: "string",
         enum: ["user", "computer"],
-        description:
-          "Optional: Which player should play as X (goes first) for 'new_game' action. If not specified, will be chosen randomly.",
+        description: "Optional: Which player should play as X (goes first) for 'new_game' action. If not specified, will be chosen randomly.",
       },
     },
     required: ["action"],

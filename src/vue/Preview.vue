@@ -5,10 +5,7 @@
       <div class="flex justify-center">
         <div class="inline-block bg-gray-600 p-0.5 rounded">
           <div class="grid grid-cols-3 gap-0.5">
-            <template
-              v-for="(row, rowIndex) in result.jsonData.board"
-              :key="rowIndex"
-            >
+            <template v-for="(row, rowIndex) in result.jsonData.board" :key="rowIndex">
               <div
                 v-for="(cell, colIndex) in row"
                 :key="`${rowIndex}-${colIndex}`"
@@ -29,14 +26,7 @@
                   <line x1="20" y1="4" x2="4" y2="20" />
                 </svg>
                 <!-- O mark -->
-                <svg
-                  v-else-if="cell === 'O'"
-                  class="w-4 h-4 text-red-600"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="3"
-                >
+                <svg v-else-if="cell === 'O'" class="w-4 h-4 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                   <circle cx="12" cy="12" r="8" />
                 </svg>
               </div>
@@ -70,9 +60,7 @@ const props = defineProps<{
 }>();
 
 function isWinningCell(row: number, col: number): boolean {
-  return props.result.jsonData?.winningLine?.some(
-    (pos) => pos.row === row && pos.col === col,
-  ) ?? false;
+  return props.result.jsonData?.winningLine?.some((pos) => pos.row === row && pos.col === col) ?? false;
 }
 
 function getGameResult(gameState: TicTacToeState): string {

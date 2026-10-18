@@ -10,9 +10,7 @@
           <span v-if="gameState.winner === 'draw'">It's a Draw!</span>
           <span v-else>{{ gameState.winner }} Wins!</span>
         </template>
-        <template v-else>
-          {{ currentPlayerName }}'s Turn ({{ gameState.currentSide }})
-        </template>
+        <template v-else> {{ currentPlayerName }}'s Turn ({{ gameState.currentSide }}) </template>
       </div>
 
       <!-- Game board -->
@@ -40,14 +38,7 @@
           </svg>
 
           <!-- O mark -->
-          <svg
-            v-else-if="cell.piece === 'O'"
-            class="w-16 h-16 text-red-600"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-          >
+          <svg v-else-if="cell.piece === 'O'" class="w-16 h-16 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
             <circle cx="12" cy="12" r="8" />
           </svg>
 
@@ -118,20 +109,13 @@ const currentPlayerName = computed(() => {
 });
 
 const isComputerTurn = computed(() => {
-  return (
-    gameState.value?.playerNames &&
-    gameState.value.playerNames[gameState.value.currentSide] === "computer"
-  );
+  return gameState.value?.playerNames && gameState.value.playerNames[gameState.value.currentSide] === "computer";
 });
 
 const turnIndicatorClass = computed(() => {
   if (!gameState.value) return "";
   if (gameState.value.isTerminal) {
-    return gameState.value.winner === "draw"
-      ? "text-gray-600"
-      : gameState.value.winner === "X"
-        ? "text-blue-600"
-        : "text-red-600";
+    return gameState.value.winner === "draw" ? "text-gray-600" : gameState.value.winner === "X" ? "text-blue-600" : "text-red-600";
   }
   return gameState.value.currentSide === "X" ? "text-blue-600" : "text-red-600";
 });
@@ -151,12 +135,8 @@ const flatBoard = computed((): FlatBoardCell[] => {
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {
       const cellValue = gameState.value.board[row][col];
-      const isLegalMove = gameState.value.legalMoves?.some(
-        (move) => move.row === row && move.col === col,
-      );
-      const isWinningCell = gameState.value.winningLine?.some(
-        (pos) => pos.row === row && pos.col === col,
-      );
+      const isLegalMove = gameState.value.legalMoves?.some((move) => move.row === row && move.col === col);
+      const isWinningCell = gameState.value.winningLine?.some((pos) => pos.row === row && pos.col === col);
 
       board.push({
         row,
@@ -171,30 +151,21 @@ const flatBoard = computed((): FlatBoardCell[] => {
 });
 
 function getCellClass(cell: FlatBoardCell, index: number) {
-  const baseClasses =
-    "w-24 h-24 flex items-center justify-center bg-white rounded";
+  const baseClasses = "w-24 h-24 flex items-center justify-center bg-white rounded";
 
   let stateClasses = "";
 
   if (cell.isWinningCell) {
     stateClasses = "bg-yellow-200 ring-2 ring-yellow-400";
-  } else if (
-    cell.isLegalMove &&
-    !isComputerTurn.value &&
-    !gameState.value?.isTerminal
-  ) {
-    stateClasses =
-      hoveredCell.value === index
-        ? "bg-gray-200 cursor-pointer"
-        : "hover:bg-gray-100 cursor-pointer";
+  } else if (cell.isLegalMove && !isComputerTurn.value && !gameState.value?.isTerminal) {
+    stateClasses = hoveredCell.value === index ? "bg-gray-200 cursor-pointer" : "hover:bg-gray-100 cursor-pointer";
   }
 
   return `${baseClasses} ${stateClasses}`;
 }
 
 function handleCellClick(index: number): void {
-  if (!gameState.value || gameState.value.isTerminal || isComputerTurn.value)
-    return;
+  if (!gameState.value || gameState.value.isTerminal || isComputerTurn.value) return;
 
   const cell = flatBoard.value[index];
   if (!cell.isLegalMove) return;
@@ -209,15 +180,11 @@ function handleCellClick(index: number): void {
     currentState: gameState.value,
   };
 
-  props.sendTextMessage?.(
-    `I want to play at ${positionName}, which is row=${cell.row}, col=${cell.col}`,
-    { data: clickData },
-  );
+  props.sendTextMessage?.(`I want to play at ${positionName}, which is row=${cell.row}, col=${cell.col}`, { data: clickData });
 }
 
 function handleCellHover(index: number, isEntering: boolean): void {
-  if (!gameState.value || gameState.value.isTerminal || isComputerTurn.value)
-    return;
+  if (!gameState.value || gameState.value.isTerminal || isComputerTurn.value) return;
 
   const cell = flatBoard.value[index];
   if (!cell.isLegalMove) return;

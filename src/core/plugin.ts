@@ -10,10 +10,7 @@ import { playTicTacToe } from "./logic";
 export { TOOL_NAME, TOOL_DEFINITION, SYSTEM_PROMPT } from "./definition";
 export { playTicTacToe } from "./logic";
 
-export const executeTicTacToe = async (
-  _context: ToolContext,
-  args: TicTacToeArgs,
-): Promise<ToolResult<never, TicTacToeState>> => {
+export const executeTicTacToe = async (_context: ToolContext, args: TicTacToeArgs): Promise<ToolResult<never, TicTacToeState>> => {
   try {
     let command: Command;
 
@@ -31,16 +28,8 @@ export const executeTicTacToe = async (
         playerNames: { X: xPlayer, O: oPlayer },
       };
     } else if (args.action === "move") {
-      if (
-        typeof args.row !== "number" ||
-        typeof args.col !== "number" ||
-        !args.board ||
-        !args.currentSide ||
-        !args.playerNames
-      ) {
-        throw new Error(
-          "Move action requires row, col, board, currentSide, and playerNames parameters",
-        );
+      if (typeof args.row !== "number" || typeof args.col !== "number" || !args.board || !args.currentSide || !args.playerNames) {
+        throw new Error("Move action requires row, col, board, currentSide, and playerNames parameters");
       }
       command = {
         action: "move",
@@ -58,11 +47,8 @@ export const executeTicTacToe = async (
 
     // Handle invalid move
     if (state.error) {
-      const isComputerTurn =
-        state.playerNames[state.currentSide] === "computer";
-      const legalMovesStr = state.legalMoves
-        .map((m) => `(row=${m.row}, col=${m.col})`)
-        .join(", ");
+      const isComputerTurn = state.playerNames[state.currentSide] === "computer";
+      const legalMovesStr = state.legalMoves.map((m) => `(row=${m.row}, col=${m.col})`).join(", ");
 
       const instructions = isComputerTurn
         ? `Invalid move attempted. You must make a valid move. Legal moves are: ${legalMovesStr}. Choose one of these moves.`
@@ -110,8 +96,7 @@ export const executeTicTacToe = async (
     console.error("ERR: TicTacToe game error", error);
     return {
       message: `TicTacToe game error: ${error instanceof Error ? error.message : "Unknown error"}`,
-      instructions:
-        "Acknowledge that there was an error with the TicTacToe game and suggest trying again.",
+      instructions: "Acknowledge that there was an error with the TicTacToe game and suggest trying again.",
     };
   }
 };

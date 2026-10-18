@@ -19,11 +19,7 @@
     <div v-if="ViewComponent" class="bg-gray-800 rounded-lg p-5 mb-5 shadow-md">
       <h2 class="text-gray-200 text-xl mb-4">View Component</h2>
       <div class="border border-gray-600 rounded h-[500px]">
-        <component
-          :is="ViewComponent"
-          :selectedResult="result"
-          :sendTextMessage="handleSendMessage"
-        />
+        <component :is="ViewComponent" :selectedResult="result" :sendTextMessage="handleSendMessage" />
       </div>
     </div>
 
@@ -44,17 +40,8 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { plugin, executeTicTacToe } from "../src/vue";
-import type {
-  ToolResult,
-  ToolSample,
-  ToolPlugin,
-  SendTextMessageOptions,
-} from "gui-chat-protocol/vue";
-import type {
-  TicTacToeArgs,
-  TicTacToeState,
-  TicTacToeClickData,
-} from "../src/core/types";
+import type { ToolResult, ToolSample, ToolPlugin, SendTextMessageOptions } from "gui-chat-protocol/vue";
+import type { TicTacToeArgs, TicTacToeState, TicTacToeClickData } from "../src/core/types";
 import { playTicTacToe } from "../src/core/logic";
 
 const currentPlugin = plugin as unknown as ToolPlugin;
@@ -127,10 +114,7 @@ const processUserMove = (row: number, col: number, currentState: TicTacToeState)
   };
 
   // If it's now computer's turn and game is not over, make computer move
-  if (
-    !newState.isTerminal &&
-    newState.playerNames[newState.currentSide] === "computer"
-  ) {
+  if (!newState.isTerminal && newState.playerNames[newState.currentSide] === "computer") {
     // Small delay for visual feedback
     setTimeout(() => {
       makeComputerMove(newState);
