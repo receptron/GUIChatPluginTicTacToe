@@ -1,4 +1,5 @@
 [![npm version](https://badge.fury.io/js/%40gui-chat-plugin%2Ftictactoe.svg)](https://badge.fury.io/js/%40gui-chat-plugin%2Ftictactoe)
+[![scoria](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/receptron/GUIChatPluginTicTacToe/badges/scoria.json)](https://github.com/receptron/GUIChatPluginTicTacToe/actions/workflows/scoria.yml)
 # GUIChatPluginTicTacToe
 
 Tic-Tac-Toe game plugin for GUI Chat.
