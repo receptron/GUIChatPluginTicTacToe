@@ -43,9 +43,7 @@ export interface TicTacToeState {
   isTerminal: boolean;
   winner: Side | "draw" | null; // null until terminal
   winningLine: { row: number; col: number }[] | null; // cells that form winning line
-  lastAction:
-    | { type: "new_game" }
-    | { type: "move"; row: number; col: number };
+  lastAction: { type: "new_game" } | { type: "move"; row: number; col: number };
   error?: string;
 }
 
@@ -57,4 +55,3 @@ export interface TicTacToeClickData {
   col: number;
   currentState: TicTacToeState;
 }
-

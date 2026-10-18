@@ -2,27 +2,53 @@
  * TicTacToe Plugin - Game Logic
  */
 
-import type {
-  Cell,
-  Side,
-  TicTacToeBoard,
-  Command,
-  TicTacToeState,
-} from "./types";
+import type { Cell, Side, TicTacToeBoard, Command, TicTacToeState } from "./types";
 
 // All possible winning lines (rows, columns, diagonals)
 const WINNING_LINES: { row: number; col: number }[][] = [
   // Rows
-  [{ row: 0, col: 0 }, { row: 0, col: 1 }, { row: 0, col: 2 }],
-  [{ row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }],
-  [{ row: 2, col: 0 }, { row: 2, col: 1 }, { row: 2, col: 2 }],
+  [
+    { row: 0, col: 0 },
+    { row: 0, col: 1 },
+    { row: 0, col: 2 },
+  ],
+  [
+    { row: 1, col: 0 },
+    { row: 1, col: 1 },
+    { row: 1, col: 2 },
+  ],
+  [
+    { row: 2, col: 0 },
+    { row: 2, col: 1 },
+    { row: 2, col: 2 },
+  ],
   // Columns
-  [{ row: 0, col: 0 }, { row: 1, col: 0 }, { row: 2, col: 0 }],
-  [{ row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1 }],
-  [{ row: 0, col: 2 }, { row: 1, col: 2 }, { row: 2, col: 2 }],
+  [
+    { row: 0, col: 0 },
+    { row: 1, col: 0 },
+    { row: 2, col: 0 },
+  ],
+  [
+    { row: 0, col: 1 },
+    { row: 1, col: 1 },
+    { row: 2, col: 1 },
+  ],
+  [
+    { row: 0, col: 2 },
+    { row: 1, col: 2 },
+    { row: 2, col: 2 },
+  ],
   // Diagonals
-  [{ row: 0, col: 0 }, { row: 1, col: 1 }, { row: 2, col: 2 }],
-  [{ row: 0, col: 2 }, { row: 1, col: 1 }, { row: 2, col: 0 }],
+  [
+    { row: 0, col: 0 },
+    { row: 1, col: 1 },
+    { row: 2, col: 2 },
+  ],
+  [
+    { row: 0, col: 2 },
+    { row: 1, col: 1 },
+    { row: 2, col: 0 },
+  ],
 ];
 
 function createEmptyBoard(): TicTacToeBoard {
@@ -41,9 +67,7 @@ function getOpponent(side: Side): Side {
   return side === "X" ? "O" : "X";
 }
 
-function getLegalMoves(
-  board: TicTacToeBoard,
-): { row: number; col: number }[] {
+function getLegalMoves(board: TicTacToeBoard): { row: number; col: number }[] {
   const moves: { row: number; col: number }[] = [];
 
   for (let row = 0; row < 3; row++) {
@@ -57,12 +81,7 @@ function getLegalMoves(
   return moves;
 }
 
-function makeMove(
-  board: TicTacToeBoard,
-  row: number,
-  col: number,
-  side: Side,
-): TicTacToeBoard {
+function makeMove(board: TicTacToeBoard, row: number, col: number, side: Side): TicTacToeBoard {
   const newBoard = copyBoard(board);
   newBoard[row][col] = side;
   return newBoard;
@@ -89,9 +108,7 @@ function countPieces(board: TicTacToeBoard): {
   return { X, O, empty };
 }
 
-function checkWinner(
-  board: TicTacToeBoard,
-): { winner: Side | null; winningLine: { row: number; col: number }[] | null } {
+function checkWinner(board: TicTacToeBoard): { winner: Side | null; winningLine: { row: number; col: number }[] | null } {
   for (const line of WINNING_LINES) {
     const cells = line.map((pos) => board[pos.row][pos.col]);
     if (cells[0] !== "." && cells[0] === cells[1] && cells[1] === cells[2]) {
@@ -101,9 +118,7 @@ function checkWinner(
   return { winner: null, winningLine: null };
 }
 
-function determineGameEnd(
-  board: TicTacToeBoard,
-): { isTerminal: boolean; winner: Side | "draw" | null; winningLine: { row: number; col: number }[] | null } {
+function determineGameEnd(board: TicTacToeBoard): { isTerminal: boolean; winner: Side | "draw" | null; winningLine: { row: number; col: number }[] | null } {
   const { winner, winningLine } = checkWinner(board);
 
   if (winner) {

@@ -33,14 +33,7 @@ export type {
 } from "../core/types";
 
 // Re-export utilities
-export {
-  TOOL_NAME,
-  TOOL_DEFINITION,
-  SYSTEM_PROMPT,
-  playTicTacToe,
-  executeTicTacToe,
-  pluginCore,
-} from "../core/plugin";
+export { TOOL_NAME, TOOL_DEFINITION, SYSTEM_PROMPT, playTicTacToe, executeTicTacToe, pluginCore } from "../core/plugin";
 
 export { samples } from "../core/samples";
 
