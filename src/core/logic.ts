@@ -3,6 +3,9 @@
  */
 
 import type { Cell, Side, TicTacToeBoard, Command, TicTacToeState } from "./types";
+import { isOnBoard } from "./position";
+
+const BOARD_SIZE = 3;
 
 // All possible winning lines (rows, columns, diagonals)
 const WINNING_LINES: { row: number; col: number }[][] = [
@@ -157,7 +160,7 @@ export function playTicTacToe(cmd: Command): TicTacToeState {
   const { row, col, board, currentSide, playerNames } = cmd;
 
   // Validate the move
-  if (row < 0 || row > 2 || col < 0 || col > 2) {
+  if (!isOnBoard(row, col, BOARD_SIZE)) {
     const legalMoves = getLegalMoves(board);
     const counts = countPieces(board);
 
@@ -171,7 +174,7 @@ export function playTicTacToe(cmd: Command): TicTacToeState {
       winner: null,
       winningLine: null,
       lastAction: { type: "move", row, col },
-      error: `Invalid move: (${row}, ${col}) is out of bounds. Row and column must be 0-2.`,
+      error: `Invalid move: (${row}, ${col}) is out of bounds. Row and column must be whole numbers from 0 to 2.`,
     };
   }
 

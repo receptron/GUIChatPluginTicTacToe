@@ -32,9 +32,10 @@
     "build": "vite build && vue-tsc -p tsconfig.build.json --emitDeclarationOnly",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint src demo",
+    "test": "tsx --test tests/*.test.ts",
     "quality": "scoria",
-    "format": "prettier --write \"{src,demo}/**/*.{ts,tsx,vue,json,css}\" \"*.{ts,js,json}\"",
-    "format:check": "prettier --check \"{src,demo}/**/*.{ts,tsx,vue,json,css}\" \"*.{ts,js,json}\""
+    "format": "prettier --write \"{src,demo,tests}/**/*.{ts,tsx,vue,json,css}\" \"*.{ts,js,json}\"",
+    "format:check": "prettier --check \"{src,demo,tests}/**/*.{ts,tsx,vue,json,css}\" \"*.{ts,js,json}\""
   },
   "peerDependencies": {
     "gui-chat-protocol": "^2.3.0",
@@ -53,6 +54,7 @@
     "prettier": "^3.9.10",
     "scoria": "^0.4.1",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.3",
     "vite": "^8.3.4",
     "vue": "^3.5.44",
